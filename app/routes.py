@@ -2,11 +2,12 @@ from app import app
 from flask import render_template
 
 @app.route('/')
-@app.route('/index')
-def index():
-    name = "Gomes"
-    dados = {"profissao": "beck-end","canal":"euartux"}
-    return render_template('index.html' , name=name, dados=dados)
+@app.route('/index', defaults={"nome":"usuario"})
+@app.route('/index/<nome>/<profissao>/<canal>') 
+def index(nome, profissao, canal):
+    
+    dados = {"profissao": profissao,"canal":canal}
+    return render_template('index.html' , nome=nome, dados=dados)
 
 @app.route('/contato')
 def contato():
