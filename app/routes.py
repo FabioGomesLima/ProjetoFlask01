@@ -18,10 +18,10 @@ def contato():
 def login():
     return render_template('login.html')
 
-@app.route('/autenticar', methods=['GET'])
+@app.route('/autenticar', methods=['POST'])
 def autenticar():
-    usuario = request.args.get ('usuario')
-    senha = request.args.get('senha')
+    usuario = request.form.get ('usuario')
+    senha = request.form.get('senha')
     return "usuario: {} e senha: {}".format(usuario, senha)
     
     
