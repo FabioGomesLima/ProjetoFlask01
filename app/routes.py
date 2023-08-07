@@ -1,6 +1,8 @@
 from app import app
 from flask import render_template
 from flask import request
+from flask import flash
+from flask import redirect
 
 @app.route('/')
 @app.route('/index', defaults={"nome":"usuario"})
@@ -22,6 +24,11 @@ def login():
 def autenticar():
     usuario = request.form.get ('usuario')
     senha = request.form.get('senha')
-    return "usuario: {} e senha: {}".format(usuario, senha)
+    if usuario  == 'admin' and senha== 'senha123':
+        return "usuario: {} e senha: {}".format(usuario, senha)
+    else:
+        flash("Dados inválidos")
+        flash("Login ou Senha Inválidos")
+        return redirect('/login')
     
     
